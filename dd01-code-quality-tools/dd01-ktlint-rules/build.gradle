@@ -6,6 +6,8 @@ repositories {
   jcenter()
 }
 
+def ktlintVersion = "0.27.0"
+
 dependencies {
     compileOnly "com.github.shyiko.ktlint:ktlint-core:$ktlintVersion"
 

@@ -11,7 +11,8 @@ class NoNullAssertionsRule : Rule("no-null-assertion") {
         if (node is LeafPsiElement) {
             val nodeValue = (node.elementType as? KtSingleValueToken)?.value
             if (nodeValue == "!!")
-                emit(node.startOffset, "\n禁止使用!!断言" + "，请使用 ?.let 或者 ?. 代替", false)
+                emit(node.startOffset, "\n禁止使用!!断言" + "，请使用 ?.let 或者 ?. 代替  具体查看文档 " +
+                        "https://docs.google.com/document/d/1ubE7r3K-lb1J12eAv8OVnNat7k7fN6Y53_PTpGpozgU/edit", false)
         }
     }
 }
