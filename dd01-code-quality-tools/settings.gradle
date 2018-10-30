@@ -1,0 +1,1 @@
+include ':app', "ddcheck", ':dd01-ktlint-rules'

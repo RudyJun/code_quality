@@ -1,0 +1,36 @@
+apply plugin: "kotlin"
+apply plugin: 'maven'
+//apply plugin: 'com.novoda.bintray-release'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+    compileOnly "com.github.shyiko.ktlint:ktlint-core:$ktlintVersion"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.10.0"
+    testCompile "com.github.shyiko.ktlint:ktlint-core:$ktlintVersion"
+    testCompile "com.github.shyiko.ktlint:ktlint-test:$ktlintVersion"
+}
+
+Properties properties = new Properties()
+properties.load(project.file('local.properties').newDataInputStream())
+
+def BINTRAY_USER = properties.get("bintray.user")
+
+def BINTRAY_KEY = properties.get("bintray.apikey")
+
+//publish {
+//    userOrg = BINTRAY_USER
+//    groupId = GROUP_ID
+//    artifactId = ARTIFACT_ID
+//    publishVersion = PUBLISH_VERSION
+//    desc = DESC
+//    repoName = REPO_NAME
+//    bintrayUser = BINTRAY_USER
+//    bintrayKey = BINTRAY_KEY
+//    dryRun = false
+//}
+

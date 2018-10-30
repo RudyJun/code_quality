@@ -1,0 +1,52 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+dependencies {
+    compile localGroovy()
+    compile gradleApi()
+    compile 'com.android.tools.build:gradle:3.1.0'
+}
+
+Properties properties = new Properties()
+properties.load(project.file('local.properties').newDataInputStream())
+
+def BINTRAY_USER = properties.get("bintray.user")
+
+def BINTRAY_KEY = properties.get("bintray.apikey")
+
+publish {
+    userOrg = BINTRAY_USER
+    groupId = GROUP_ID
+    artifactId = ARTIFACT_ID
+    publishVersion = PUBLISH_VERSION
+    desc = DESC
+    repoName = REPO_NAME
+    bintrayUser = BINTRAY_USER
+    bintrayKey = BINTRAY_KEY
+    dryRun = false
+}
+
+
+group = GROUP_ID
+version = PUBLISH_VERSION
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("../checkstyle"))
+        }
+    }
+}
